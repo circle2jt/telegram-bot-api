@@ -76,6 +76,10 @@ type Update struct {
 	//
 	// optional
 	CallbackQuery *CallbackQuery `json:"callback_query,omitempty"`
+	// CallbackQuery new incoming callback query
+	//
+	// optional
+	MessageReaction *MessageReaction `json:"message_reaction,omitempty"`
 	// ShippingQuery new incoming shipping query. Only for invoices with
 	// flexible price
 	//
@@ -1460,6 +1464,20 @@ type LoginURL struct {
 	//
 	// optional
 	RequestWriteAccess bool `json:"request_write_access,omitempty"`
+}
+
+type Reaction struct {
+	Type string `json:"type"`
+	Emoji string `json:"emoji"`
+}
+
+type MessageReaction struct {
+	Chat Chat `json:"chat"`
+	MessageID int `json:"message_id"`
+	User *User `json:"user"`
+	Date int `json:"date"`
+	OldReaction []Reaction `json:"old_reaction"`
+	NewReaction []Reaction `json:"new_reaction"`
 }
 
 // CallbackQuery represents an incoming callback query from a callback button in
